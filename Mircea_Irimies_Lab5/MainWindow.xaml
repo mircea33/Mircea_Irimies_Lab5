@@ -12,9 +12,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="{Binding Phonenum}" Grid.Column="0"/>
-                <TextBlock Text="{Binding Subscriber}" Grid.Column="1"/>
+                <TextBlock Text="{Binding Phonenum}" Grid.Column = "0"/>
+                <TextBlock Text="{Binding Subscriber}" Grid.Column = "1"/>
+                <TextBlock Text="{Binding Contract_value}" Grid.Column = "2"/>
+                <TextBlock Text="{Binding Contract_date}" Grid.Column = "3"/>
             </Grid>
         </DataTemplate>
         <local:PhoneNumbersDataSet x:Key="phoneNumbersDataSet"/>
@@ -24,18 +28,22 @@ Source={StaticResource phoneNumbersDataSet}}"/>
     <Grid x:Name="grdMain" Loaded="grdMain_Loaded">
         <Button x:Name="btnNew" Content="New" Margin="69,40,629,367" ContentStringFormat="" Click = "btnNew_Click"/>
         <Button x:Name="btnEdit" Content="Edit" Margin="69,127,629,275" Click="btnEdit_Click"/>
-        <Button x:Name="btnCancel" Content="Cancel" Margin="667,376,31,25" IsEnabled="False" Click = "btnCancel_Click"/>
+        <Button x:Name="btnCancel" Content="Cancel" Margin="684,411,49,6" IsEnabled="False" Click = "btnCancel_Click"/>
         <ListBox x:Name="lstPhones" Margin="356,40,31,157" ItemsSource="{Binding}"
 IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource
 ResourceKey=PhoneNumbersTemplate}"/>
         <Button x:Name="btnExit" Content="Exit" FontWeight="Bold" Margin="69,303,629,50" Click="btnExit_Click"/>
-        <Button x:Name="btnNext" Content="Next" Margin="666,296,31,112" RenderTransformOrigin="0.488,-0.083" Click="btnNext_Click"/>
-        <Button x:Name="btnPrevious" Content="Previous" Margin="377,296,314,117" Click="btnPrevious_Click"/>
-        <Label x:Name="lblPhoneNum" Content="PhoneNumber:" Margin="377,327,314,69" />
-        <Label x:Name="lblSubscriber" Content="Subscriber" Margin="377,347,330,41"/>
-        <TextBox x:Name="txtPhoneNumber" TextWrapping="Wrap" Margin="562,327,31,88" IsEnabled="False" Text="{Binding Path=Phonenum}"/>
-        <TextBox x:Name="txtSubscriber" TextWrapping="Wrap" Margin="562,348,31,64" IsEnabled="False" Text="{Binding Path=Subscriber}"/>
-        <Button x:Name="btnSave" Content="Save" Margin="369,376,322,25" IsEnabled="False" Click="btnSave_Click"/>
+        <Button x:Name="btnNext" Content="Next" Margin="666,288,31,120" RenderTransformOrigin="0.488,-0.083" Click="btnNext_Click"/>
+        <Button x:Name="btnPrevious" Content="Previous" Margin="369,288,322,125" Click="btnPrevious_Click"/>
+        <Label x:Name="lblPhoneNum" Content="PhoneNumber:" Margin="377,311,314,85" RenderTransformOrigin="0.59,-0.12" />
+        <Label x:Name="lblSubscriber" Content="Subscriber" Margin="377,330,330,58"/>
+        <TextBox x:Name="txtPhoneNumber" TextWrapping="Wrap" Margin="562,319,30,96" IsEnabled="False" Text="{Binding Path=Phonenum}"/>
+        <TextBox x:Name="txtSubscriber" TextWrapping="Wrap" Margin="562,341,30,73" IsEnabled="False" Text="{Binding Path=Subscriber}"/>
+        <Button x:Name="btnSave" Content="Save" Margin="377,409,340,6" IsEnabled="False" Click="btnSave_Click" RenderTransformOrigin="0.547,2.208" />
         <Button x:Name="btnDelete" Content="Delete" Margin="69,192,629,217" Click="btnDelete_Click"/>
+        <Label x:Name="lblValoareContract" Content="ValoareContract" Margin="377,354,257,54" RenderTransformOrigin="0.454,0.224"/>
+        <Label x:Name="lblDataContract" Content="DataContract" Margin="377,380,340,30"/>
+        <TextBox x:Name="txtValoareContract" TextWrapping="Wrap" Margin="562,363,30,50" IsEnabled="False" Text = "{Binding Path = Contract_value}"/>
+        <TextBox x:Name="txtDataContract" TextWrapping="Wrap" Margin="562,389,31,27" IsEnabled="False" Text = "{Binding Path = Contract_date}"/>
     </Grid>
 </Window>

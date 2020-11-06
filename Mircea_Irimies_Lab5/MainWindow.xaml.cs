@@ -36,12 +36,16 @@ namespace Mircea_Irimies_Lab5
            tblPhoneNumbersAdapter = new PhoneNumbersDataSetTableAdapters.PhoneNumbersTableAdapter();
             Binding txtPhoneNumberBinding = new Binding();
             Binding txtSubscriberBinding = new Binding();
+            Binding txtValoareContractBinding = new Binding();
+        Binding txtDataContractBinding = new Binding();
         public MainWindow()
         {
             InitializeComponent();
             grdMain.DataContext = phoneNumbersDataSet.PhoneNumbers;
             txtPhoneNumberBinding.Path = new PropertyPath("Phonenum");
             txtSubscriberBinding.Path = new PropertyPath("Subscriber");
+            txtValoareContractBinding.Path = new PropertyPath("Contract_value");
+            txtDataContractBinding.Path = new PropertyPath("Contract_date");
             txtPhoneNumber.SetBinding(TextBox.TextProperty, txtPhoneNumberBinding);
             txtSubscriber.SetBinding(TextBox.TextProperty, txtSubscriberBinding);
         }
@@ -82,10 +86,16 @@ namespace Mircea_Irimies_Lab5
             btnNext.IsEnabled = false;
             txtPhoneNumber.IsEnabled = true;
             txtSubscriber.IsEnabled = true;
+            txtValoareContract.IsEnabled = true;
+            txtDataContract.IsEnabled = true;
             BindingOperations.ClearBinding(txtPhoneNumber, TextBox.TextProperty);
             BindingOperations.ClearBinding(txtSubscriber, TextBox.TextProperty);
+            BindingOperations.ClearBinding(txtValoareContract, TextBox.TextProperty);
+            BindingOperations.ClearBinding(txtDataContract, TextBox.TextProperty);
             txtPhoneNumber.Text = "";
             txtSubscriber.Text = "";
+            txtValoareContract.Text = "";
+            txtDataContract.Text = "";
             Keyboard.Focus(txtPhoneNumber);
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -93,6 +103,8 @@ namespace Mircea_Irimies_Lab5
             action = ActionState.Edit;
             string tempPhonenum = txtPhoneNumber.Text.ToString();
             string tempSubscriber = txtSubscriber.Text.ToString();
+            string tempContract_Value = txtValoareContract.Text.ToString();
+            string tempContract_Date = txtDataContract.Text.ToString();
             btnNew.IsEnabled = false;
             btnEdit.IsEnabled = false;
             btnDelete.IsEnabled = false;
@@ -103,10 +115,16 @@ namespace Mircea_Irimies_Lab5
             btnNext.IsEnabled = false;
             txtPhoneNumber.IsEnabled = true;
             txtSubscriber.IsEnabled = true;
+            txtValoareContract.IsEnabled = true;
+            txtDataContract.IsEnabled = true;
             BindingOperations.ClearBinding(txtPhoneNumber, TextBox.TextProperty);
             BindingOperations.ClearBinding(txtSubscriber, TextBox.TextProperty);
+            BindingOperations.ClearBinding(txtValoareContract, TextBox.TextProperty);
+            BindingOperations.ClearBinding(txtDataContract, TextBox.TextProperty);
             txtPhoneNumber.Text = tempPhonenum;
             txtSubscriber.Text = tempSubscriber;
+            txtValoareContract.Text = tempContract_Value;
+            txtDataContract.Text = tempContract_Date;
             Keyboard.Focus(txtPhoneNumber);
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -114,6 +132,8 @@ namespace Mircea_Irimies_Lab5
             action = ActionState.Delete;
             string tempPhonenum = txtPhoneNumber.Text.ToString();
             string tempSubscriber = txtSubscriber.Text.ToString();
+            string tempContract_Value = txtValoareContract.Text.ToString();
+            string tempContract_Date = txtDataContract.Text.ToString();
             btnNew.IsEnabled = false;
             btnEdit.IsEnabled = false;
             btnDelete.IsEnabled = false;
@@ -126,6 +146,8 @@ namespace Mircea_Irimies_Lab5
             BindingOperations.ClearBinding(txtSubscriber, TextBox.TextProperty);
             txtPhoneNumber.Text = tempPhonenum;
             txtSubscriber.Text = tempSubscriber;
+            txtValoareContract.Text = tempContract_Value;
+            txtDataContract.Text = tempContract_Date;
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -143,6 +165,8 @@ namespace Mircea_Irimies_Lab5
             txtSubscriber.IsEnabled = false;
             txtPhoneNumber.SetBinding(TextBox.TextProperty, txtPhoneNumberBinding);
             txtSubscriber.SetBinding(TextBox.TextProperty, txtSubscriberBinding);
+            txtValoareContract.SetBinding(TextBox.TextProperty, txtValoareContractBinding);
+            txtDataContract.SetBinding(TextBox.TextProperty, txtDataContractBinding);
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -155,6 +179,8 @@ namespace Mircea_Irimies_Lab5
                     newRow.BeginEdit();
                     newRow["Phonenum"] = txtPhoneNumber.Text.Trim();
                     newRow["Subscriber"] = txtSubscriber.Text.Trim();
+                    newRow["Contract_Value"] = txtValoareContract.Text.Trim();
+                    newRow["Contract_Date"] = txtDataContract.Text.Trim(); 
                     newRow.EndEdit();
                     phoneNumbersDataSet.PhoneNumbers.Rows.Add(newRow);
                     tblPhoneNumbersAdapter.Update(phoneNumbersDataSet.PhoneNumbers);
@@ -174,6 +200,8 @@ namespace Mircea_Irimies_Lab5
                 btnNext.IsEnabled = true;
                 txtPhoneNumber.IsEnabled = false;
                 txtSubscriber.IsEnabled = false;
+                txtValoareContract.IsEnabled = false;
+                txtDataContract.IsEnabled = false;
             }
             else
             if (action == ActionState.Edit)
@@ -184,6 +212,8 @@ namespace Mircea_Irimies_Lab5
                     editRow.BeginEdit();
                     editRow["Phonenum"] = txtPhoneNumber.Text.Trim();
                     editRow["Subscriber"] = txtSubscriber.Text.Trim();
+                    editRow["Contract_Value"] = txtValoareContract.Text.Trim();
+                    editRow["Contract_Date"] = txtDataContract.Text.Trim();
                     editRow.EndEdit();
                     tblPhoneNumbersAdapter.Update(phoneNumbersDataSet.PhoneNumbers);
                     phoneNumbersDataSet.AcceptChanges();
@@ -205,6 +235,8 @@ namespace Mircea_Irimies_Lab5
                 txtSubscriber.IsEnabled = false;
                 txtPhoneNumber.SetBinding(TextBox.TextProperty, txtPhoneNumberBinding);
                 txtSubscriber.SetBinding(TextBox.TextProperty, txtSubscriberBinding);
+                txtValoareContract.SetBinding(TextBox.TextProperty, txtValoareContractBinding);
+                txtDataContract.SetBinding(TextBox.TextProperty, txtDataContractBinding);
             }
             else
             if (action == ActionState.Delete)
@@ -234,6 +266,8 @@ namespace Mircea_Irimies_Lab5
                 txtSubscriber.IsEnabled = false;
                 txtPhoneNumber.SetBinding(TextBox.TextProperty, txtPhoneNumberBinding);
                 txtSubscriber.SetBinding(TextBox.TextProperty, txtSubscriberBinding);
+                txtValoareContract.SetBinding(TextBox.TextProperty, txtValoareContractBinding);
+                txtDataContract.SetBinding(TextBox.TextProperty, txtDataContractBinding);
             }
         }
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
